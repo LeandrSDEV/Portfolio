@@ -1,12 +1,137 @@
 ﻿@page "/skills"
 
-<h1 class="section-title">Skills</h1>
+<h1 class="section-title">Tech Skills</h1>
+
+<p class="section-subtitle">
+    Clique em uma tecnologia para ver meu nível, tempo de experiência e projetos reais onde utilizei.
+</p>
 
 <div class="skills-grid">
-    <div class="skill-card">C#</div>
-    <div class="skill-card">ASP.NET Web API</div>
-    <div class="skill-card">Blazor</div>
-    <div class="skill-card">Entity Framework Core</div>
-    <div class="skill-card">Docker</div>
-    <div class="skill-card">SQL Server</div>
+
+    @foreach (var skill in SkillList)
+    {
+        <div class="skill-card" @onclick="() => ToggleSkill(skill)">
+            <span class="skill-icon">@skill.Icon</span>
+            @skill.Name
+        </div>
+    }
+
 </div>
+
+@if (SelectedSkill != null)
+{
+    <div class="skill-details fade-in">
+        <h2>@SelectedSkill.Name</h2>
+
+        <p class="skill-years">⏳ Experiência: <b>@SelectedSkill.Years</b></p>
+
+        <p>@SelectedSkill.Description</p>
+
+        <h4>🔧 Projetos de Destaque</h4>
+        <ul>
+            @foreach (var project in SelectedSkill.Projects)
+            {
+                <li>@project</li>
+            }
+        </ul>
+
+        <button class="close-btn" @onclick="() => SelectedSkill = null">Fechar</button>
+    </div>
+}
+
+@code {
+    SkillItem? SelectedSkill;
+
+    void ToggleSkill(SkillItem skill)
+    {
+        if (SelectedSkill == skill)
+            SelectedSkill = null;
+        else
+            SelectedSkill = skill;
+    }
+
+    List<SkillItem> SkillList = new()
+    {
+        new SkillItem
+        {
+            Name = "C#",
+            Icon = "🐱‍💻",
+            Years = "4+ anos",
+            Description = "Uso C# diariamente para construir APIs REST escaláveis, workers, integrações e soluções de arquitetura limpa.",
+            Projects = {
+                "API de Autenticação com JWT",
+                "Sistema Financeiro com CQRS",
+                "Serviço de envio de e-mails em background usando Worker"
+            }
+        },
+        new SkillItem
+        {
+            Name = "ASP.NET Web API",
+            Icon = "🚀",
+            Years = "4 anos",
+            Description = "Desenvolvimento de APIs robustas com validação, versionamento, logs, documentação e segurança.",
+            Projects = {
+                "Microserviço de Pedidos",
+                "Gateway de Integração",
+                "API de Catálogo com cache distribuído (Redis)"
+            }
+        },
+        new SkillItem
+        {
+            Name = "Blazor",
+            Icon = "🔥",
+            Years = "2 anos",
+            Description = "Criação de interfaces ricas, dinâmicas e responsivas usando componentes reutilizáveis.",
+            Projects = {
+                "Portal Administrativo Completo",
+                "Dashboard com gráficos em tempo real",
+                "Aplicação PWA responsiva para mobile"
+            }
+        },
+        new SkillItem
+        {
+            Name = "Docker",
+            Icon = "🐳",
+            Years = "2 anos",
+            Description = "Containerização de serviços, APIs e bancos de dados para ambientes isolados e reprodutíveis.",
+            Projects = {
+                "Stack Docker para microserviços",
+                "Ambiente Dev completo usando Compose",
+                "API + PostgreSQL + Redis em containers"
+            }
+        },
+        new SkillItem
+        {
+            Name = "Entity Framework Core",
+            Icon = "🗄️",
+            Years = "3 anos",
+            Description = "Experiência com consultas otimizadas, migrations, tracking, LINQ avançado e padrões de persistência.",
+            Projects = {
+                "Sistema financeiro com milhões de registros",
+                "Serviço de relatórios com consultas otimizadas",
+                "Implementação de multi-tenancy"
+            }
+        },
+        new SkillItem
+        {
+            Name = "SQL Server",
+            Icon = "🧮",
+            Years = "4 anos",
+            Description = "Modelagem relacional, tuning de consultas, índices, procedures e rotinas de ETL.",
+            Projects = {
+                "DB corporativo com +20 tabelas",
+                "ETL de integração com sistemas legados",
+                "Monitoramento e otimização de queries pesadas"
+            }
+        }
+    };
+
+    public class SkillItem
+    {
+        public string Name { get; set; }
+        public string Icon { get; set; }
+        public string Years { get; set; }
+        public string Description { get; set; }
+        public List<string> Projects { get; set; } = new();
+    }
+}

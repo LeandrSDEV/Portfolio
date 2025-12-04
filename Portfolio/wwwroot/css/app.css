@@ -57,7 +57,7 @@ html, body {
     cursor: pointer;
 }
 
-/* ----- Hero ----- */
+/* - About - */
 .hero {
     text-align: center;
     padding: 120px 20px;
@@ -74,6 +74,106 @@ html, body {
     border-radius: 8px;
     text-decoration: none;
 }
+
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+/* - Skills - */
+
+.section-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.skill-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 25px 20px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    backdrop-filter: blur(8px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+    cursor: pointer;
+}
+
+    .skill-card:hover {
+        transform: translateY(-6px);
+        border: 1px solid var(--primary);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+    }
+
+.skill-icon {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+    display: block;
+    color: var(--primary);
+}
+
+/* Área detalhada */
+.skill-details {
+    margin-top: 35px;
+    padding: 30px;
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+    border-left: 4px solid var(--primary);
+}
+
+.skill-years {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.close-btn {
+    margin-top: 20px;
+    padding: 10px 18px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .close-btn:hover {
+        opacity: 0.8;
+    }
+
+.fade-in {
+    animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
 
 /* - Footer - */
 .footer {
