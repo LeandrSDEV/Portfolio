@@ -1,12 +1,13 @@
 ﻿@using Portfolio.Shared
 @inherits LayoutComponentBase
 
-<div class="layout-container">
-    <NavMenu />
-
-    <main class="content">
-        @Body
-    </main>
+<div class="page-wrapper">
+    <div class="content-wrapper">
+        <NavMenu />
+        <main class="content">
+            @Body
+        </main>
+    </div>
 
     <Footer />
 </div>
