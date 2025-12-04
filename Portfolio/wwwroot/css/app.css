@@ -1,4 +1,4 @@
-/* ----- Theme ----- */
+/* - Theme - */
 :root {
     --bg: #F9FAFB;
     --text: #111827;
@@ -12,7 +12,7 @@
     --card: #1F2937;
 }
 
-/* ----- Global ----- */
+/* - Global - */
 body {
     background: var(--bg);
     color: var(--text);
@@ -26,7 +26,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* ----- Navbar ----- */
+/* - Navbar - */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -50,4 +50,28 @@ body {
     border: none;
     font-size: 1.4rem;
     cursor: pointer;
+}
+
+/* - Footer - */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    opacity: 0.7;
+}
+
+/* Animations */
+.fade-in {
+    animation: fade 0.7s ease-in-out;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+    }
 }
