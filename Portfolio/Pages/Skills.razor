@@ -7,15 +7,13 @@
 </p>
 
 <div class="skills-grid">
-
     @foreach (var skill in SkillList)
     {
-        <div class="skill-card" @onclick="() => ToggleSkill(skill)">
+        <div class="skill-card @(skill == SelectedSkill ? "selected" : "")" @onclick="() => SelectSkill(skill)">
             <span class="skill-icon">@skill.Icon</span>
             @skill.Name
         </div>
     }
-
 </div>
 
 @if (SelectedSkill != null)
@@ -34,20 +32,15 @@
                 <li>@project</li>
             }
         </ul>
-
-        <button class="close-btn" @onclick="() => SelectedSkill = null">Fechar</button>
     </div>
 }
 
 @code {
     SkillItem? SelectedSkill;
 
-    void ToggleSkill(SkillItem skill)
+    void SelectSkill(SkillItem skill)
     {
-        if (SelectedSkill == skill)
-            SelectedSkill = null;
-        else
-            SelectedSkill = skill;
+        SelectedSkill = skill;
     }
 
     List<SkillItem> SkillList = new()
@@ -125,6 +118,13 @@
             }
         }
     };
+
+    protected override void OnInitialized()
+    {
+        // Seleciona automaticamente a primeira skill
+        if (SkillList.Any())
+            SelectedSkill = SkillList.First();
+    }
 
     public class SkillItem
     {
