@@ -166,7 +166,20 @@ html, body {
     }
 }
 
-/* ------------------------------------------------------------------------------------------------------ */
+/* - Projects - */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
 
 /* - Footer - */
 .footer {
