@@ -7,7 +7,7 @@
 }
 
 [data-theme="dark"] {
-    --bg: #ff0000;
+    --bg: #111827;
     --text: #F9FAFB;
     --card: #1F2937;
 }
@@ -19,4 +19,35 @@ body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     transition: background 0.3s, color 0.3s;
+}
+
+.section-title {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+}
+
+/* ----- Navbar ----- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: var(--card);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+    .navbar a {
+        margin-right: 20px;
+        color: var(--text);
+        text-decoration: none;
+    }
+
+        .navbar a.active {
+            color: var(--primary);
+        }
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
 }
