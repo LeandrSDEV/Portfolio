@@ -1,0 +1,22 @@
+﻿<button @onclick="ToggleTheme" class="theme-toggle">
+    @(isDark ? "☀️" : "🌙")
+</button>
+
+@code {
+    bool isDark;
+
+    protected override void OnInitialized()
+    {
+        isDark = false;
+    }
+
+    void ToggleTheme()
+    {
+        isDark = !isDark;
+
+        var theme = isDark ? "dark" : "light";
+        JS.InvokeVoidAsync("setTheme", theme);
+    }
+
+    [Inject] IJSRuntime JS { get; set; }
+}
