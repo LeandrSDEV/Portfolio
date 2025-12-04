@@ -1,6 +1,6 @@
 ﻿@page "/skills"
 
-<h1 class="section-title">Tech Skills</h1>
+<h1 class="section-title">Habilidades Técnicas</h1>
 
 <p class="section-subtitle">
     Clique em uma tecnologia para ver meu nível, tempo de experiência e projetos reais onde utilizei.
@@ -135,3 +135,9 @@
         public List<string> Projects { get; set; } = new();
     }
 }
+
+<script>
+    function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+    }
+</script>
