@@ -1,7 +1,110 @@
 ﻿@page "/contact"
+@using System.ComponentModel.DataAnnotations
 
-<h1 class="section-title">Contact</h1>
+<div class="contact-container">
+    <div class="contact-form-section">
+        <h1>Contato</h1>
+        <p>Vamos conversar! Preencha o formulário abaixo.</p>
 
-<p>E-mail: <b>leandro22.js@gmail.com</b></p>
-<p>LinkedIn: <a href="https://www.linkedin.com/in/leandro-de-jesus-santos-128478391/" target="_blank">Meu LinkedIn</a></p>
-<p>GitHub: <a href="https://github.com/LeandrSDEV" target="_blank">Meu GitHub</a></p>
+        <EditForm Model="ContactModel" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="contact-grid">
+                <InputText @bind-Value="ContactModel.Name" placeholder="Seu Nome" class="contact-input" />
+                <ValidationMessage For="@(() => ContactModel.Name)" />
+
+                <InputText @bind-Value="ContactModel.Email" placeholder="Seu Email" class="contact-input" />
+                <ValidationMessage For="@(() => ContactModel.Email)" />
+
+                <InputText @bind-Value="ContactModel.Subject" placeholder="Assunto" class="contact-input" />
+                <ValidationMessage For="@(() => ContactModel.Subject)" />
+
+                <InputTextArea @bind-Value="ContactModel.Message" placeholder="Mensagem" class="contact-textarea" />
+                <ValidationMessage For="@(() => ContactModel.Message)" />
+            </div>
+
+            <button type="submit" class="contact-button" disabled="@IsSending">
+                @if (IsSending)
+                {
+                    <span>Enviando...</span>
+                }
+                else
+                {
+                    <span>Enviar Mensagem</span>
+                }
+            </button>
+
+            @if (SendSuccess)
+            {
+                <p class="success-msg">✅ Mensagem enviada com sucesso!</p>
+            }
+            @if (SendError)
+            {
+                <p class="error-msg">❌ Ocorreu um erro ao enviar. Tente novamente.</p>
+            }
+        </EditForm>
+    </div>
+
+    <div class="contact-info-section">
+        <h2>Informações</h2>
+        <div class="info-card">
+            <div class="info-item"><span class="icon">👤</span> Leandro de J. Santos</div>
+            <div class="info-item"><span class="icon">📧</span> <a href="mailto:Leandro22.js@gmail.com">Leandro22.js@gmail.com</a></div>
+            <div class="info-item"><span class="icon">📱</span> +55 (79) 98801-2359</div>
+            <div class="info-item"><span class="icon">📍</span> Aracaju/SE</div>
+            <div class="info-item social-links">
+                <span class="icon">🔗</span>
+                <a href="https://www.linkedin.com/in/leandro-de-jesus-santos-128478391/" target="_blank">LinkedIn</a>
+                <span> | </span>
+                <a href="https://github.com/LeandrSDEV" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private ContactForm ContactModel = new();
+    private bool IsSending = false;
+    private bool SendSuccess = false;
+    private bool SendError = false;
+
+    private async Task HandleSubmit()
+    {
+        IsSending = true;
+        SendSuccess = false;
+        SendError = false;
+
+        try
+        {
+            // Simulação de envio de email
+            await Task.Delay(1000);
+            SendSuccess = true;
+            ContactModel = new ContactForm(); // limpa formulário
+        }
+        catch
+        {
+            SendError = true;
+        }
+        finally
+        {
+            IsSending = false;
+        }
+    }
+
+    public class ContactForm
+    {
+        [Required(ErrorMessage = "O nome é obrigatório")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "O email é obrigatório")]
+        [EmailAddress(ErrorMessage = "Email inválido")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "O assunto é obrigatório")]
+        public string Subject { get; set; }
+
+        [Required(ErrorMessage = "A mensagem é obrigatória")]
+        public string Message { get; set; }
+    }
+}
