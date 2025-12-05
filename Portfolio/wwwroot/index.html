@@ -6,16 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
 
-    <base href="/" id="app-base" data-prod-base="/Portfolio/" />
-
-    <script>
-        // Ajusta o base antes de carregar qualquer recurso
-        if (location.hostname.includes("github.io")) {
-            document.getElementById("app-base").href =
-                document.getElementById("app-base").dataset.prodBase;
-        }
-    </script>
-
+    <base href="/Portfolio/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -23,6 +14,7 @@
 </head>
 
 <body>
+    <!-- O Blazor renderiza sua aplicação aqui -->
     <div id="app"></div>
 
     <script src="_framework/blazor.webassembly.js"></script>
